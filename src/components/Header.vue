@@ -11,7 +11,7 @@
        <!-- <li><img src="'https://image.tmdb.org/t/p/w500' + `{{ movie.poster_path }}`" alt=""></li> -->
        <li> <strong>Original Title:</strong>  {{ movie.original_title }}</li>
        <li> <strong>Original Language:</strong> {{ movie.original_language }}</li>
-       <!-- <li>  <img src='@/assets/img/{{ movie.original_language }}.png' alt=""> </li> -->
+      <!-- <li>  <img :src="`@/assets/img/{{ movie.original_language }}.png`" alt=""> </li>  -->
        <li> <strong>Vote:</strong> {{ movie.vote_average }}</li>
      </ul>
      
@@ -25,7 +25,7 @@
         
       <ul>
        <li><strong>Title:</strong> {{ serie.title }}</li>
-       <!-- <li><img src="'https://image.tmdb.org/t/p/w500' + `{{ movie.poster_path }}`" alt=""></li> -->
+         <li><img :src= "`https://image.tmdb.org/t/p/w92{{movie.poster_path}}`" alt=""></li>  
        <li><strong>Original Title:</strong> {{ serie.original_title }}</li>
        <li><strong>Original Language:</strong> {{ serie.original_language }}</li>
        <li><strong>Vote:</strong> {{ serie.vote_average }}</li>
