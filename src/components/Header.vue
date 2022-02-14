@@ -1,18 +1,18 @@
 <template>
   <header>
-    <input type="text" v-model="search" > <button @click="cercaFilmserie">Cerca</button>
+    <input type="text" v-model="search"> <button @click="cercaFilmserie">Cerca</button>
     <h1>Film</h1>
     <section>
       
       <div class="card"  v-for="movie in movies" :key="movie.id" >
         
      <ul>
-       <li>  {{ movie.title }}</li>
+       <li><strong>Title:</strong>  {{ movie.title }}</li>
        <!-- <li><img src="'https://image.tmdb.org/t/p/w500' + `{{ movie.poster_path }}`" alt=""></li> -->
-       <li>   {{ movie.original_title }}</li>
-       <li>{{ movie.original_language }}</li>
+       <li> <strong>Original Title:</strong>  {{ movie.original_title }}</li>
+       <li> <strong>Original Language:</strong> {{ movie.original_language }}</li>
        <!-- <li>  <img src='@/assets/img/{{ movie.original_language }}.png' alt=""> </li> -->
-       <li>  {{ movie.vote_average }}</li>
+       <li> <strong>Vote:</strong> {{ movie.vote_average }}</li>
      </ul>
      
       </div>
@@ -68,6 +68,15 @@ methods: {
 
 <style>
 
+* {
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  padding: 10px;
+}
+
 section {
   display: flex;
   flex-wrap: wrap;
@@ -87,4 +96,13 @@ section {
 ul {
   list-style: none;
 }
+
+/* Stronger and cooler */
+strong {
+  font-size: larger; 
+  color: dodgerblue;
+} 
+
+
 </style>
+
