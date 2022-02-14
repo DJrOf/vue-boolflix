@@ -71,6 +71,7 @@ methods: {
 * {
   font-family: 'Raleway', sans-serif;
   font-family: 'Roboto', sans-serif;
+  
 }
 
 header {
@@ -86,7 +87,7 @@ section {
 }
 
 .card {
-  height: 150px;
+  height: 160px;
   width: calc((100vw / 12) * 2);
   border: 1px solid darkgrey;
   margin: 10px;
@@ -100,7 +101,7 @@ ul {
 /* Stronger and cooler */
 strong {
   font-size: larger; 
-  color: dodgerblue;
+  color: #78D8E3;
 } 
 
 
