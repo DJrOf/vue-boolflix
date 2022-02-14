@@ -1,17 +1,17 @@
 <template>
   <div>
-    <Header/>
+    <HeaderMain/>
     
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import HeaderMain from './components/HeaderMain.vue'
 
 export default {
   name: 'App',
   components: {
-    Header,
+    HeaderMain,
    
   }
 }
