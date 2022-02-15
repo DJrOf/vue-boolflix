@@ -3,42 +3,40 @@
 <header>
   <h1>Boolflix</h1>
   <div class="searchbar" >
-  <input type="text" v-model="search"> <button @click="cercaFilmserie">Cerca</button>
+  <input type="text" v-model="cerca"> <button @click="search(cerca)">Cerca</button>
   </div>
   
   </header>
   <main>
     <h2>Film</h2>
+
     <section>
-      
-      <div class="card"  v-for="movie in movies" :key="movie.id" >
-        
-     <ul>
-       <li><strong>Title:</strong>  {{ movie.title }}</li>
-       <!-- <li><img src="'https://image.tmdb.org/t/p/w500' + `{{ movie.poster_path }}`" alt=""></li> -->
-       <li> <strong>Original Title:</strong>  {{ movie.original_title }}</li>
-       <li> <strong>Original Language:</strong> {{ movie.original_language }}</li>
-      <!-- <li>  <img :src="`@/assets/img/{{ movie.original_language }}.png`" alt=""> </li>  -->
-       <li> <strong>Vote:</strong> {{ movie.vote_average }}</li>
-     </ul>
-     
-      </div>
+        <div class="card"  v-for="movie in movies" :key="movie.id" >
+          <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ movie.poster_path }`" alt="">
+          <ul class="infor">
+            <li><strong>Title:</strong>  {{ movie.title }}</li>
+            <li> <strong>Original Title:</strong>  {{ movie.original_title }}</li>
+            <li> <strong>Original Language:</strong> {{ movie.original_language }}</li>
+            <!-- <li>  <img :src="`@/assets/img/${ movie.original_language }.png`" alt=""> </li>  -->
+            <li> <strong>Vote:</strong> {{ movie.vote_average }}</li>
+          </ul>
+        </div>
       </section>
 
-  <h2>Serie tv</h2>
-  <section>
-      
-      <div class="card" v-for="serie in series" :key="serie.id" >
-        
-      <ul>
-       <li><strong>Title:</strong> {{ serie.title }}</li>
-         <li><img :src= "`https://image.tmdb.org/t/p/w92{{movie.poster_path}}`" alt=""></li>  
-       <li><strong>Original Title:</strong> {{ serie.original_title }}</li>
-       <li><strong>Original Language:</strong> {{ serie.original_language }}</li>
-       <li><strong>Vote:</strong> {{ serie.vote_average }}</li>
-     </ul>
-      </div>
-  </section>
+      <h2>Serie tv</h2>
+      <section>
+          
+          <div class="card" v-for="serie in series" :key="serie.id" >
+            <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ serie.poster_path }`" alt="">
+          <ul>
+          <li><strong>Title:</strong> {{ serie.name }}</li>
+            <!-- <li><img :src= "`https://image.tmdb.org/t/p/w92 ${movie.poster_path}`" alt=""></li>   -->
+          <li><strong>Original Title:</strong> {{ serie.original_name }}</li>
+          <li><strong>Original Language:</strong> {{ serie.original_language }}</li>
+          <li><strong>Vote:</strong> {{ serie.vote_average }}</li>
+        </ul>
+          </div>
+      </section>
   </main>
 </div>
   
@@ -55,24 +53,54 @@ data() {
   return {
     movies: [],
     series: [],
-    search: "",
+    cerca: "",
+    api : {
+     language: "it-IT",
+     baseUri: "https://api.themoviedb.org/3",
+     key: "101a61aa934c613d880b033e114051e0",
+    },
   };
 },
 
 methods: {
-  fetchMovieseries() {
-    axios.get(`https://api.themoviedb.org/3/search/movie?query=${ this.search }&api_key=101a61aa934c613d880b033e114051e0`, `https://api.themoviedb.org/3/search/tv?query=${ this.search }&api_key=101a61aa934c613d880b033e114051e0`)
-    .then((res ) => {
-      this.movies = res.data.results;
-      this.series = res.data.results;
-    })
+
+search(cerca) {
+if (!cerca) {
+  this.movies = [];
+  this.series = [];
+  return;
+}
+const { key, language } = this.api;
+const config = {
+  params: {
+    language,
+    api_key: key,
+    query: cerca,
   },
-  cercaFilmserie() {
-  this.fetchMovieseries();
+};
+
+this.fetchMovieseries('search/movie', config, 'movies');
+this.fetchMovieseries('search/tv', config, 'series');
+
+},
+
+  fetchMovieseries(endpoint, config, target) {
+    axios.get(`${this.api.baseUri}/${endpoint}`, config)
+    .then((res ) => {
+      if (target == 'movies') {
+        this.movies = res.data.results;
+      } else {
+        this.series = res.data.results;
+      }
+     
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   },
 },
 
-}
+};
 </script>
 
 <style>
@@ -110,25 +138,42 @@ main {
 }
 
 .card {
-  height: 160px;
-  width: calc((100vw / 12) * 2);
-  border: 1px solid darkgrey;
+  /* height: 160px;
+  width: calc((100vw / 12) * 2); */
+  background-color: #E16F00;
   margin: 10px;
-  padding: 1%;
+  padding: 0;
+  width: 342px;
+  height: 513px;
 }
 
 ul {
-  list-style: none;
+  max-width: 650px;
+ list-style: none;
+ position: relative;
+ margin: 20px;
 }
+
 
 /* Stronger and cooler */
 strong {
   font-size: larger; 
-  color: #E16F00;
+  color: dodgerblue;
 } 
 
 li {
   color: white;
+}
+
+.posterimg {
+ position: absolute;
+ z-index: 5;
+ height: 513px;
+ width: 342px;
+}
+
+.posterimg:hover {
+  display: none;
 }
 
 
