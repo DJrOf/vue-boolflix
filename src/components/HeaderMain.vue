@@ -149,6 +149,7 @@ main {
   padding: 0;
   width: 342px;
   height: 513px;
+  border-radius: 20px;
 }
 
 ul {
@@ -174,6 +175,7 @@ li {
  z-index: 5;
  height: 513px;
  width: 342px;
+ border-radius: 20px;
 }
 
 .posterimg:hover {
