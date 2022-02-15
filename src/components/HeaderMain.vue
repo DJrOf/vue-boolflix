@@ -134,6 +134,7 @@ section {
   justify-content: center;
   margin: 0;
   margin-bottom: 20px;
+  
 }
 
 main {
