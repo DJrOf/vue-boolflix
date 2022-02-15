@@ -15,10 +15,9 @@
           <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ movie.poster_path }`" alt="">
           <ul class="infor">
             <li><strong>Title:</strong>  {{ movie.title }}</li>
-            <li> <strong>Original Title:</strong>  {{ movie.original_title }}</li>
-            <li> <strong>Original Language:</strong> {{ movie.original_language }}</li>
-            <!-- <li>  <img :src="`@/assets/img/${ movie.original_language }.png`" alt=""> </li>  -->
-            <li> <strong>Vote:</strong> {{ movie.vote_average }}</li>
+            <li><strong>Original Title:</strong>  {{ movie.original_title }}</li>
+            <!-- <li><img class="flag" :src="srcFlag" alt=""> </li>   -->
+            <li><strong>Vote:</strong> {{ movie.vote_average }}</li>
           </ul>
         </div>
       </section>
@@ -99,7 +98,11 @@ this.fetchMovieseries('search/tv', config, 'series');
     });
   },
 },
-
+// computed: {
+//   srcFlag() {
+//     return require(`@/assets/img/${ this.item.original_language }.png`);
+//   }
+// }
 };
 </script>
 
@@ -175,6 +178,11 @@ li {
 .posterimg:hover {
   display: none;
 }
+
+.flag {
+  width: 50px;
+  height: 40px;
+} 
 
 
 </style>
