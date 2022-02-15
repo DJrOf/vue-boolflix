@@ -9,6 +9,7 @@
 
     <main>
       <h1>Per te:</h1>
+      <!-- Piccola licenza 'blasfema' per la spaziatura dell'emoji -->
       <h2 style="font-size:40px">&#127909; &nbsp;Film</h2>
       <section>
           <div class="card"  v-for="movie in movies" :key="movie.id" >
@@ -22,9 +23,9 @@
           </div>
         </section>
 
-        <h2 style="font-size:40px">&#128421; &nbsp;Broadcast (Serie tv, web series, ecc...)</h2>
+        <h2 style="font-size:40px" >&#128421; &nbsp;Broadcast (Serie tv, web series, ecc...)</h2>
         <section>
-            
+
             <div class="card" v-for="serie in series" :key="serie.id" >
               <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ serie.poster_path }`" alt="">
             <ul>
@@ -38,15 +39,15 @@
         </section>
     </main>
   </div>
-  
-  
+
+
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-name: 'Header', 
+name: 'Header',
 
 data() {
   return {
@@ -91,7 +92,7 @@ this.fetchMovieseries('search/tv', config, 'series');
       } else {
         this.series = res.data.results;
       }
-     
+
     })
     .catch((err) => {
       console.log(err);
@@ -138,7 +139,7 @@ section {
   justify-content: center;
   margin: 0;
   margin-bottom: 20px;
-  
+
 }
 
 main {
@@ -166,9 +167,9 @@ ul {
 
 /* Stronger and cooler */
 strong {
-  font-size: larger; 
+  font-size: larger;
   color: dodgerblue;
-} 
+}
 
 li {
   color: white;
@@ -189,8 +190,12 @@ li {
 .flag {
   width: 50px;
   height: 40px;
-} 
+}
 
+h2 {
+
+margin-bottom:40px
+}
 
 
 </style>
