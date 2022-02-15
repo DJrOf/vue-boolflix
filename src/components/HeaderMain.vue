@@ -1,43 +1,43 @@
 <template>
-<div>
-<header>
-  <h1>Boolflix</h1>
-  <div class="searchbar" >
-  <input type="text" v-model="cerca"> <button @click="search(cerca)">Cerca</button>
-  </div>
-  
-  </header>
-  <main>
-    <h2>Film</h2>
+  <div>
+    <header>
+      <h1>Boolflix</h1>
+      <div class="searchbar" >
+      <input type="text" v-model="cerca"> <button @click="search(cerca)">Cerca</button>
+      </div>
+    </header>
 
-    <section>
-        <div class="card"  v-for="movie in movies" :key="movie.id" >
-          <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ movie.poster_path }`" alt="">
-          <ul class="infor">
-            <li><strong>Title:</strong>  {{ movie.title }}</li>
-            <li><strong>Original Title:</strong>  {{ movie.original_title }}</li>
-            <!-- <li><img class="flag" :src="srcFlag" alt=""> </li>   -->
-            <li><strong>Vote:</strong> {{ movie.vote_average }}</li>
-          </ul>
-        </div>
-      </section>
-
-      <h2>Serie tv</h2>
+    <main>
+      <h1>Per te:</h1>
+      <h2 style="font-size:40px">&#127909; &nbsp;Film</h2>
       <section>
-          
-          <div class="card" v-for="serie in series" :key="serie.id" >
-            <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ serie.poster_path }`" alt="">
-          <ul>
-          <li><strong>Title:</strong> {{ serie.name }}</li>
-            <!-- <li><img :src= "`https://image.tmdb.org/t/p/w92 ${movie.poster_path}`" alt=""></li>   -->
-          <li><strong>Original Title:</strong> {{ serie.original_name }}</li>
-          <li><strong>Original Language:</strong> {{ serie.original_language }}</li>
-          <li><strong>Vote:</strong> {{ serie.vote_average }}</li>
-        </ul>
+          <div class="card"  v-for="movie in movies" :key="movie.id" >
+            <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ movie.poster_path }`" alt="">
+            <ul class="infor">
+              <li><strong>Title:</strong>  {{ movie.title }}</li>
+              <li><strong>Original Title:</strong>  {{ movie.original_title }}</li>
+              <!-- <li><img class="flag" :src="srcFlag" alt=""> </li>   -->
+              <li><strong>Vote:</strong> {{ movie.vote_average }}</li>
+            </ul>
           </div>
-      </section>
-  </main>
-</div>
+        </section>
+
+        <h2 style="font-size:40px">&#128421; &nbsp;Broadcast (Serie tv, web series, ecc...)</h2>
+        <section>
+            
+            <div class="card" v-for="serie in series" :key="serie.id" >
+              <img class="posterimg" :src="`https://image.tmdb.org/t/p/w342/${ serie.poster_path }`" alt="">
+            <ul>
+            <li><strong>Title:</strong> {{ serie.name }}</li>
+              <!-- <li><img :src= "`https://image.tmdb.org/t/p/w92 ${movie.poster_path}`" alt=""></li>   -->
+            <li><strong>Original Title:</strong> {{ serie.original_name }}</li>
+            <li><strong>Original Language:</strong> {{ serie.original_language }}</li>
+            <li><strong>Vote:</strong> {{ serie.vote_average }}</li>
+          </ul>
+            </div>
+        </section>
+    </main>
+  </div>
   
   
 </template>
@@ -123,6 +123,10 @@ header {
   justify-content: space-between;
 }
 
+h1 {
+  margin-bottom: 40px;
+}
+
 body {
   background-color:  dodgerblue ;
   color: white;
@@ -186,6 +190,7 @@ li {
   width: 50px;
   height: 40px;
 } 
+
 
 
 </style>
