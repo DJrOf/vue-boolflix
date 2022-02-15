@@ -9,7 +9,7 @@
 
     <main>
       <h1>Per te:</h1>
-      <!-- Piccola licenza 'blasfema' per la spaziatura dell'emoji -->
+      <!-- Piccola licenza 'blasfema per la spaziatura dell'emoji -->
       <h2 style="font-size:40px">&#127909; &nbsp;Film</h2>
       <section>
           <div class="card"  v-for="movie in movies" :key="movie.id" >
