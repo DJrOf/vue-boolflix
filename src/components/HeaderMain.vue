@@ -17,7 +17,10 @@
             <ul class="infor">
               <li><strong>Title:</strong>  {{ movie.title }}</li>
               <li><strong>Original Title:</strong>  {{ movie.original_title }}</li>
-              <!-- <li><img class="flag" :src="srcFlag" alt=""> </li>   -->
+
+              <li><img class="flag"  v-if="hasFlag(movie)" :src="srcFlag(movie)" alt="">
+
+              <span v-else></span> </li>  
               <li><strong>Vote:</strong> {{ movie.vote_average }}</li>
             </ul>
           </div>
@@ -51,6 +54,7 @@ name: 'Header',
 
 data() {
   return {
+    countries: ["it", "en"],
     movies: [],
     series: [],
     cerca: "",
@@ -63,6 +67,13 @@ data() {
 },
 
 methods: {
+
+ srcFlag(item) {
+      return require(`@/assets/img/${ item.original_language }.png`);
+   },
+   hasFlas(item) {
+     return this.countries.includes(item.original_language)
+   },
 
 search(cerca) {
 if (!cerca) {
@@ -98,12 +109,11 @@ this.fetchMovieseries('search/tv', config, 'series');
       console.log(err);
     });
   },
+
+  
 },
-// computed: {
-//   srcFlag() {
-//     return require(`@/assets/img/${ this.item.original_language }.png`);
-//   }
-// }
+
+   
 };
 </script>
 
@@ -196,6 +206,7 @@ h2 {
 
 margin-bottom:40px
 }
+
 
 
 </style>
